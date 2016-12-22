@@ -24,10 +24,12 @@ export class AppComponent implements OnInit{
   constructor(private webAPI: WebAPI, public dialog: MdDialog, public viewContainerRef: ViewContainerRef) {}
 
   getPokemon(search) {
+    this.activeProgress = true;
     this.webAPI.getPokemon(search)
       .subscribe(pokemon=> {
+        this.activeProgress = false;
         pokemon.picture = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.national_id}.png`;
-        this.pokemons.unshift(pokemon);
+        this.showPokemonInfo(pokemon);
         this.searchQuery = '';
       })
   }

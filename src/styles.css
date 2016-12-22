@@ -3,3 +3,12 @@ body {
   margin: 0;
   padding: 0;
 }
+.md-overlay-container{
+  position: fixed;
+}
+.md-input-underline{
+  border-color: rgba(255,255,255, 0.38);
+}
+.md-input-placeholder{
+  color: rgba(255,255,255, 0.38);
+}
