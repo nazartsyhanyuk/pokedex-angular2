@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class WebAPI {
   LOCAL_CONFIG = {
-    API_HOST: 'http://pokeapi.co/api/v1/'
+    API_HOST: 'https://pokeapi.co/api/v1/'
   };
 
   constructor(private http: Http) {}
