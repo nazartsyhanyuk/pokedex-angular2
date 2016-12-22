@@ -4,7 +4,7 @@ import {MdDialogRef} from "@angular/material";
 @Component({
   selector: 'app-pokemon-dialog',
   templateUrl: './pokemon-dialog.component.html',
-  styleUrls: ['./pokemon-dialog.component.css']
+  styleUrls: ['./pokemon-dialog.component.scss']
 })
 export class PokemonDialogComponent implements OnInit{
   ngOnInit(): void {
@@ -27,7 +27,6 @@ export class PokemonDialogComponent implements OnInit{
         }
       })
     }
-    console.log(pokemon);
     this.pokemon = pokemon;
   }
 

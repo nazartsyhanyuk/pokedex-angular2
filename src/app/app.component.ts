@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {WebAPI} from './services/api.service';
-import {MdDialog, MdDialogRef} from "@angular/material";
+import {MdDialog, MdDialogRef, MdDialogConfig} from "@angular/material";
 import {PokemonDialogComponent} from "./pokemon-dialog/pokemon-dialog.component";
 
 @Component({
@@ -13,22 +13,22 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     this.getPokemons();
   }
-  id: number;
   pokemons = [];
+  searchQuery: string;
   limit: number = 12;
   offset: number = 0;
   activeProgress = false;
   dialogRef: MdDialogRef<PokemonDialogComponent>;
 
 
-  constructor(private webAPI: WebAPI, public dialog: MdDialog) {}
+  constructor(private webAPI: WebAPI, public dialog: MdDialog, public viewContainerRef: ViewContainerRef) {}
 
   getPokemon(search) {
-
     this.webAPI.getPokemon(search)
       .subscribe(pokemon=> {
         pokemon.picture = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.national_id}.png`;
-        this.pokemons.push(pokemon);
+        this.pokemons.unshift(pokemon);
+        this.searchQuery = '';
       })
   }
 
@@ -46,9 +46,7 @@ export class AppComponent implements OnInit{
         });
         this.offset += this.limit;
         },
-        ()=> {
-
-        },
+        ()=> {},
         ()=> {
           this.activeProgress = false;
         })
@@ -56,9 +54,9 @@ export class AppComponent implements OnInit{
 
   showPokemonInfo(pokemon) {
     console.log(pokemon);
-    this.dialogRef = this.dialog.open(PokemonDialogComponent, {
-      disableClose: false
-    });
+    let config = new MdDialogConfig();
+    config.viewContainerRef = this.viewContainerRef;
+    this.dialogRef = this.dialog.open(PokemonDialogComponent, config);
     this.dialogRef.componentInstance.pokemon = pokemon;
     this.dialogRef.afterClosed().subscribe(()=> {
       this.dialogRef = null;

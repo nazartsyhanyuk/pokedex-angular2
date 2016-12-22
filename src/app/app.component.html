@@ -1,10 +1,12 @@
 <md-progress-bar mode="indeterminate" color="warn" *ngIf="activeProgress"></md-progress-bar>
 <md-toolbar color="primary">
   <md-icon>search</md-icon>
-  <md-input type="text" #search name="search"
+  <md-input type="text"
+            name="search"
+            [(ngModel)]="searchQuery"
             placeholder="Search"
             dividerColor="warn"
-         (keyup.enter)="getPokemon(search.value)"></md-input>
+         (keyup.enter)="getPokemon(searchQuery)"></md-input>
 </md-toolbar>
 <div class="pokemon-list">
   <app-pokemon-item *ngFor="let pokemon of pokemons" [pokemon]="pokemon" (click)="showPokemonInfo(pokemon)"></app-pokemon-item>
