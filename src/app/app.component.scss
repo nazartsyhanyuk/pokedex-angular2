@@ -1,22 +1,24 @@
-md-progress-bar{
-  position: fixed;
-  top: 0;
-}
-md-toolbar{
-  padding: 5px;
-}
-.pokemon-list{
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 800px;
-  margin: 0 auto;
-}
-.load-more{
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-:host md-input input{
-  color: #ffffff;
+.main{
+  md-progress-bar{
+    position: fixed;
+    top: 0;
+  }
+  md-toolbar{
+    padding: 5px;
+  }
+  .pokemon-list{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 800px;
+    margin: 0 auto;
+  }
+  .load-more{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  :host md-input input{
+    color: #ffffff;
+  }
 }

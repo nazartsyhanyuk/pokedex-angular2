@@ -15,7 +15,7 @@ export class PokemonDialogComponent implements OnInit{
   constructor(public dialogRef: MdDialogRef<PokemonDialogComponent>) { }
 
   catchParameters(pokemon) {
-    let actualParameters = ['attack', 'defence', 'height', 'speed', 'exp', 'hp'];
+    let actualParameters = ['national_id', 'attack', 'defence', 'height', 'speed', 'exp', 'hp'];
     pokemon.parameters = [];
     for (let key in pokemon) {
       actualParameters.forEach((item)=> {

@@ -14,6 +14,7 @@ export class AppComponent implements OnInit{
     this.getPokemons();
   }
   pokemons = [];
+  pokemonPictureLink:string = `https://veekun.com/dex/media/pokemon/dream-world/`;
   searchQuery: string;
   limit: number = 12;
   offset: number = 0;
@@ -28,7 +29,7 @@ export class AppComponent implements OnInit{
     this.webAPI.getPokemon(search)
       .subscribe(pokemon=> {
         this.activeProgress = false;
-        pokemon.picture = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.national_id}.png`;
+        pokemon.picture = `${this.pokemonPictureLink}${pokemon.national_id}.svg`;
         this.showPokemonInfo(pokemon);
         this.searchQuery = '';
       })
@@ -43,7 +44,7 @@ export class AppComponent implements OnInit{
     return this.webAPI.getPokemonsList(options)
       .subscribe(items=> {
         items.objects.map((pokemon)=> {
-          pokemon.picture = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.national_id}.png`;
+          pokemon.picture = `${this.pokemonPictureLink}${pokemon.national_id}.svg`;
           this.pokemons.push(pokemon);
         });
         this.offset += this.limit;
@@ -55,18 +56,29 @@ export class AppComponent implements OnInit{
   }
 
   showPokemonInfo(pokemon) {
-    console.log(pokemon);
+    this.disableScrolling();
     let config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
     this.dialogRef = this.dialog.open(PokemonDialogComponent, config);
     this.dialogRef.componentInstance.pokemon = pokemon;
     this.dialogRef.afterClosed().subscribe(()=> {
       this.dialogRef = null;
+      this.enableScrolling();
     });
   }
 
   loadMore() {
     this.getPokemons(this.offset);
   }
+
+  disableScrolling(){
+  let x=window.scrollX;
+  let y=window.scrollY;
+  window.onscroll=function(){window.scrollTo(x, y);};
+}
+
+  enableScrolling(){
+  window.onscroll=function(){};
+}
 
 }

@@ -1,0 +1,35 @@
+.pokemon-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 200px;
+  height: 250px;
+  margin: 20px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  .pokemon-image{
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    padding: 10px;
+    width: 100%;
+    img{
+      width: 80%;
+      height: auto;
+      transition: all linear 0.2s;
+    }
+  }
+  .pokemon-name{
+    text-transform: uppercase;
+  }
+  &:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    .pokemon-image>img{
+      transform: scale(1.1);
+    }
+  }
+}
+

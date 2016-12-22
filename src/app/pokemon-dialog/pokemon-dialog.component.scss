@@ -1,0 +1,34 @@
+.pokemon-dialog{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 220px;
+  height: auto;
+  .pokemon-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+    img{
+      width: 80%;
+      height: auto;
+    }
+  }
+  .pokemon-parameters{
+    display: flex;
+    width: 100%;
+    table{
+      width: 100%;
+      tr{
+        background-color: rgba(0, 0, 0, 0.1);
+        & td,th{
+          width: 50%;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
